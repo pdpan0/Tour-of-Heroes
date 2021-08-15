@@ -24,7 +24,9 @@ export class HeroesComponent implements OnInit {
 
   // Consumo do serviço.
   getHeroes(): void {
-    this.heroes = this.heroService.getHeroes();
+    // subscribe() passa a retornar a lista á um callback.
+    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
+  
   }
 
   // ngOnInit faz parte do ciclo de vida do componente, onde executa o código após a construção do componente.
