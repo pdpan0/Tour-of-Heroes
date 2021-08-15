@@ -1,0 +1,16 @@
+<h2>{{hero.name | uppercase}} Details</h2>
+<!-- Utiliza pipes para transformação dos valores no exemplo tranformando para uppercase. -->
+<div><span>id: </span>{{hero.id}}</div>
+<div><span>name: </span>{{hero.name}}</div>
+<div>
+    <label for="name">Hero name: </label>
+    <input type="name" [(ngModel)]="hero.name" placeholder="name">
+    <!-- [(ngModel)] é a forma do Angular de *two-way binding*, vincula a propriedade
+         "hero.name" ao input, assim o dado pode fluir em ambas direções, tanto da
+         propriedade para o input, quanto do input para propriedade.
+         
+         Two-way binding habilita o componente uma forma de compartilhar dados pela aplicação,
+         Utilizado para escutar eventos e atualizações simultaneamente entre componentes
+         pais e filhos.
+    -->
+</div>
