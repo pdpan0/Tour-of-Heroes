@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
-import { HEROES } from '../heroes-mock';
+import { HeroService } from '../hero.service';
 
 @Component({
   selector: 'app-heroes',
@@ -14,10 +14,21 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = hero;
   }
 
-  heroes = HEROES;
+  heroes: Hero[] = [];
   
-  constructor() {}
+  
+  constructor(
+  // Injeta o serviço no componente.
+    private heroService: HeroService
+  ) {}
 
-  ngOnInit(): void {}
+  // Consumo do serviço.
+  getHeroes(): void {
+    this.heroes = this.heroService.getHeroes();
+  }
 
+  // ngOnInit faz parte do ciclo de vida do componente, onde executa o código após a construção do componente.
+  ngOnInit(): void {
+    this.getHeroes();
+  }
 }
