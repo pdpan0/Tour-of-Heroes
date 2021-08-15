@@ -1,11 +1,34 @@
-<h2>{{hero.name | uppercase}} Details</h2>
-<!-- Utiliza pipes para transformação dos valores no exemplo tranformando para uppercase. -->
-<div><span>id: </span>{{hero.id}}</div>
-<div><span>name: </span>{{hero.name}}</div>
-<div>
-    <label for="name">Hero name: </label>
-    <input type="name" [(ngModel)]="hero.name" placeholder="name">
-    <!-- [(ngModel)] é a forma do Angular de *two-way binding*, vincula a propriedade
+<h2>My Heroes</h2>
+<ul class="heroes">
+    <li *ngFor="let hero of heroes" 
+        [class.selected]="hero === selectedHero"
+        (click)="onSelect(hero)">
+    <!-- 
+        *ngFor ->   é a forma de percorrer uma lista. 
+                    <li> é o elemento hospedeiro.
+                    heroes é nosso mock.
+                    hero é o item atual da lista.
+
+        (click) ->  responsável por escutar os eventos de click na <li>
+                    e executar a função onSelect(hero).
+    
+        [class.selected] -> sintaxe para class binding, onde permite adicionar e remover
+                            classes de acordo com uma condição.
+        -->
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </li>
+</ul>
+
+<div *ngIf="selectedHero">
+    <h2>{{selectedHero.name | uppercase}} Details</h2>
+    <!-- Utiliza pipes para transformação dos valores no exemplo tranformando para uppercase. -->
+    <div><span>id: </span>{{selectedHero.id}}</div>
+    <div><span>name: </span>{{selectedHero.name}}</div>
+    <div>
+        <label for="hero-name">Hero name: </label>
+        <input type="hero-name" [(ngModel)]="selectedHero.name" placeholder="name">
+    <!--
+        [(ngModel)] é a forma do Angular de *two-way binding*, vincula a propriedade
          "hero.name" ao input, assim o dado pode fluir em ambas direções, tanto da
          propriedade para o input, quanto do input para propriedade.
          
@@ -13,4 +36,5 @@
          Utilizado para escutar eventos e atualizações simultaneamente entre componentes
          pais e filhos.
     -->
+    </div>
 </div>
