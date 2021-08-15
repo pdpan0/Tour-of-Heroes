@@ -11,12 +11,10 @@ import { MessageService } from '../services/message.service';
 
 export class HeroesComponent implements OnInit {
   heroes: Hero[] = [];
-  selectedHero?: Hero;
   
   constructor(
   // Injeta o serviço no componente.
-    private heroService: HeroService,
-    private messageService: MessageService
+    private heroService: HeroService
   ) {}
   
   // ngOnInit faz parte do ciclo de vida do componente, onde executa o código após a construção do componente.
@@ -27,12 +25,8 @@ export class HeroesComponent implements OnInit {
   // Consumo do serviço.
   getHeroes(): void {
     // subscribe() passa a retornar a lista á um callback.
-    this.heroService.getHeroes().subscribe(heroes => this.heroes = heroes);
+    this.heroService.getHeroes()
+    .subscribe(heroes => this.heroes = heroes);
   
-  }
-
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesComponent: Selected hero id=${hero.id}`);
   }
 }

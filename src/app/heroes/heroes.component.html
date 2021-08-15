@@ -1,8 +1,6 @@
 <h2>My Heroes</h2>
 <ul class="heroes">
-    <li *ngFor="let hero of heroes" 
-        [class.selected]="hero === selectedHero"
-        (click)="onSelect(hero)">
+    <li *ngFor="let hero of heroes">
     <!-- 
         *ngFor ->   é a forma de percorrer uma lista. 
                     <li> é o elemento hospedeiro.
@@ -15,9 +13,8 @@
         [class.selected] -> sintaxe para class binding, onde permite adicionar e remover
                             classes de acordo com uma condição.
         -->
-        <span class="badge">{{hero.id}}</span> {{hero.name}}
+        <a routerLink="/detail/{{hero.id}}">
+            <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </a>
     </li>
 </ul>
-
-
-<app-hero-detail [hero]="selectedHero"></app-hero-detail>
