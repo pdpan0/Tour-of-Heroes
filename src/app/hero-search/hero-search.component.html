@@ -1,0 +1,19 @@
+<div id="search-component">
+    <label for="search-box">Hero Search</label>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+
+    <ul class="search-result">
+        <!-- 
+            heroes$ -> onde $ é uma conveção para indicar 
+            que o tipo de heroes é um Observable e não um
+            array.
+            | async -> *ngFor não consegue fazer nada com Observable, por isso necessita
+            do | async para aplicar o subscribe() internamente.
+        -->
+        <li *ngFor="let hero of heroes$ | async">
+            <a routerLink="/detail/{{hero.id}}">
+            {{hero.name}}
+            </a>
+        </li>
+    </ul>
+</div>

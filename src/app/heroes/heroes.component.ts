@@ -24,9 +24,27 @@ export class HeroesComponent implements OnInit {
   
   // Consumo do serviço.
   getHeroes(): void {
-    // subscribe() passa a retornar a lista á um callback.
+    /*
+      subscribe() passa a retornar a lista á um callback.
+      o tipo Observable não realiza nada se não tiver o subscribe().
+    */
     this.heroService.getHeroes()
     .subscribe(heroes => this.heroes = heroes);
   
+  }
+
+  add(name: string): void {
+    name = name.trim();
+    if(!name) { return; }
+    this.heroService.addHero({name} as Hero)
+      .subscribe(hero => {
+        this.heroes.push(hero);
+      });
+  }
+
+  delete(hero: Hero): void {
+    this.heroes = this.heroes.filter(h => h !== hero);
+    this.heroService.deleteHero(hero.id)
+      .subscribe();
   }
 }
